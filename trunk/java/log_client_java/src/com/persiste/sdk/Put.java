@@ -41,6 +41,7 @@ public class Put extends CallableMethod{
 		
 		ArrayList<NameValuePair> data=new ArrayList<NameValuePair>();
 		data.add(new BasicNameValuePair("content", this.log.toJSONString()));
+		
 		http.post(data);
 	}
 

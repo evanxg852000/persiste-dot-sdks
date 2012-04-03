@@ -152,7 +152,6 @@ public class HttpClientWrapper {
 				while ((s = buffer.readLine()) != null) {
 					HttpClientWrapper.this.response += s;
 				}
-			
 			} catch (Exception e) {  
 				HttpClientWrapper.this.response="{\"status\":\"failure\",\"message\":\"Http client error check connection\"}";
 				HttpClientWrapper.this.has_error=true;
@@ -163,7 +162,6 @@ public class HttpClientWrapper {
 				HttpClientWrapper.notification_receiver.LoggingClientCompleted(formated_response,HttpClientWrapper.this.has_error);
 			}
 		}
-	
 
 	}
 	
