@@ -6,7 +6,7 @@ First of all download the PHP sdk from [http://persiste-dot-sdks.googlecode.com/
 
 = Integration =
 
-Once the sdk package has been unpacked , drop the sdk folder into your project and include the include the sdk into your php project using this snippet.
+Once the sdk package has been unpacked , drop the sdk folder into your project the include the sdk into your php project using this snippet.
 {{{
 <?php
  include("PATH_TO_SDK_FOLDER/Sdk.php");
