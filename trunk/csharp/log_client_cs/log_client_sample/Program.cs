@@ -22,13 +22,24 @@ using PersisteDotSdk;
 namespace log_client_sample {
     class Program {
         static void Main(string[] args) {
-
+            //initialise service callback passing true will make all service call to be performed asynchronously 
             LogServiceClient.Initialise(new LogNotifactionReceiver(), true);
-            //LogServiceClient.warn("C#", "a log from c#", "janedoe@yahoo.fr");
-            // LogServiceClient.get();
-            LogServiceClient.delete(24);
 
-            Console.WriteLine("main");
+            /*save log with custom fields
+            Dictionary<String, String> custom_fields=new Dictionary<string,string>();
+            custom_fields.Add("Calibre", "58");
+            custom_fields.Add("FPS", "110");
+            LogServiceClient.warn("C#", "a log from c#", "janedoe@yahoo.fr",custom_fields);
+            */
+
+            //save log without fields
+            //LogServiceClient.warn("C#", "a log from c#", "janedoe@yahoo.fr");
+
+            //get logs by page (first page)
+            // LogServiceClient.get(1);
+            
+            //delete log
+            //LogServiceClient.delete(38);
 
         }
 

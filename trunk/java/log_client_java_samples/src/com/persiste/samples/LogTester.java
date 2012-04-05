@@ -15,6 +15,8 @@ package com.persiste.samples;
 
 
 
+import java.util.HashMap;
+
 import com.persiste.sdk.INotifiable;
 import com.persiste.sdk.LogServiceClient;
 import com.persiste.sdk.LogserviceResponse;
@@ -23,6 +25,7 @@ import com.persiste.sdk.LogserviceResponse;
 
 public class LogTester {
 	public static void main(String args[]){
+		//initialise service callback passing true will make all service call to be performed asynchronously 
 		LogServiceClient.initialise(new INotifiable() {
 			@Override
 			public void LoggingClientCompleted(LogserviceResponse response, boolean http_error_flag) {
@@ -33,6 +36,22 @@ public class LogTester {
 			}
 		}, true);
 		
-		LogServiceClient.get();
+		/*save log with custom fields
+		HashMap<String, String> custom_field=new HashMap<String, String>();
+		custom_field.put("Marine", "laval");
+		custom_field.put("Color", "Green");
+		LogServiceClient.warn("Java Log", "gjhgjh", "evan@hor.fr", custom_field, "");
+		*/
+		
+        //save log without fields
+		//LogServiceClient.warn("Java Log", "gjhgjh", "evan@hor.fr");
+
+        //get logs by page (first page)
+        //LogServiceClient.get(1);
+        
+        //delete log
+        //LogServiceClient.delete(38);
+
+		
 	}
 }
