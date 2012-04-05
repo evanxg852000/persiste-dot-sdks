@@ -1,6 +1,0 @@
-For lower version of .net use the source code with the appropriate Json lib
-in Json-libs/ folder.
-The source code is designed to work for lower version of .net (3.0 is 
-the minimu if you are using the json lib).
-in order to support .net version lower than 3.0 you need to use another 
-json lib as Linq is not supported in lower version
