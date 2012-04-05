@@ -20,11 +20,14 @@ import java.util.HashMap;
 import com.persiste.sdk.INotifiable;
 import com.persiste.sdk.LogServiceClient;
 import com.persiste.sdk.LogserviceResponse;
+import com.persiste.sdk.Sdk;
 
 
 
 public class LogTester {
 	public static void main(String args[]){
+		
+		
 		//initialise service callback passing true will make all service call to be performed asynchronously 
 		LogServiceClient.initialise(new INotifiable() {
 			@Override
@@ -50,7 +53,7 @@ public class LogTester {
         //LogServiceClient.get(1);
         
         //delete log
-        //LogServiceClient.delete(38);
+        LogServiceClient.delete(38);
 
 		
 	}
