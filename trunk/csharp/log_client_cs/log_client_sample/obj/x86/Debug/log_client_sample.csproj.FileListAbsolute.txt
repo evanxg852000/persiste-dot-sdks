@@ -1,0 +1,10 @@
+C:\Users\Evansofts\Desktop\log_client_cs\log_client_sample\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Evansofts\Desktop\log_client_cs\log_client_sample\bin\Debug\log_client_sample.exe
+C:\Users\Evansofts\Desktop\log_client_cs\log_client_sample\bin\Debug\log_client_sample.pdb
+C:\Users\Evansofts\Desktop\log_client_cs\log_client_sample\bin\Debug\PersisteDotSdk.dll
+C:\Users\Evansofts\Desktop\log_client_cs\log_client_sample\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Evansofts\Desktop\log_client_cs\log_client_sample\bin\Debug\PersisteDotSdk.pdb
+C:\Users\Evansofts\Desktop\log_client_cs\log_client_sample\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Evansofts\Desktop\log_client_cs\log_client_sample\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Evansofts\Desktop\log_client_cs\log_client_sample\obj\x86\Debug\log_client_sample.exe
+C:\Users\Evansofts\Desktop\log_client_cs\log_client_sample\obj\x86\Debug\log_client_sample.pdb
