@@ -1,4 +1,17 @@
 <?php
+/**
+* Persiste. PHP SDK (native)
+*
+* The cloud based logging platform.
+*
+* @package             Persiste. SDK
+* @author              Evance Soumaoro
+* @copyright           Copyright (c) 2012 - 20xx, Evansofts.
+* @license             Evansofts Proprietary Licence (EPL)
+* @link                http://evansofts.com
+* @version             Version 0.1
+*/
+
 class LogServiceClient {
 	private $_method; 
 
@@ -7,29 +20,35 @@ class LogServiceClient {
 	}
 	
 	public  function run(){
-		return $this->_method->call();
+		$json=$this->_method->call();
+		$json=json_decode($json);
+		$response=new LogserviceResponse($json->status, $json->message);
+		if(isset($json->data))
+			$response->data=$json->data;
+		
+		return $response;
 	}
 	
 
-	public static function error($title, $description, $emiter="",$custom_fields=array(),$stack_trace=""){
+	public static function error($title, $description, $emiter="",$custom_fields=null,$stack_trace=""){
 		$log=new Log(LogLevel::ERROR, $title, $description, $emiter, $custom_fields, $stack_trace);
 		$client=new LogServiceClient(new Put($log));
 		return $client->run();
 	}
 	
-	public static function warn($title, $description, $emiter="",$custom_fields=array() ,$stack_trace=""){
+	public static function warn($title, $description, $emiter="",$custom_fields=null ,$stack_trace=""){
 		$log=new Log(LogLevel::WARNING, $title, $description, $emiter, $custom_fields, $stack_trace);
 		$client=new LogServiceClient(new Put($log));
 		return $client->run();
 	}
 	
-	public static function info($title, $description, $emiter="",$custom_fields=array() ,$stack_trace=""){
+	public static function info($title, $description, $emiter="",$custom_fields=null ,$stack_trace=""){
 		$log=new Log(LogLevel::INFO, $title, $description, $emiter, $custom_fields, $stack_trace);
 		$client=new LogServiceClient(new Put($log));
 		return $client->run();
 	}
 	
-	public static function success($title, $description, $emiter="",$custom_fields=array() ,$stack_trace=""){
+	public static function success($title, $description, $emiter="",$custom_fields=null ,$stack_trace=""){
 		$log=new Log(LogLevel::SUCCESS, $title, $description, $emiter, $custom_fields, $stack_trace);
 		$client=new LogServiceClient(new Put($log));
 		return $client->run();
@@ -46,4 +65,17 @@ class LogServiceClient {
 		 return $client->run();
 	}
 		
+}
+
+
+class LogserviceResponse {
+	public $status;
+	public $message;
+	public $data;
+
+	public function __construct($status, $message,$data=null) {
+		$this->status=$status;
+		$this->message=$message;
+	}
+	
 }
