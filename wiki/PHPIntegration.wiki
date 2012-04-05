@@ -46,3 +46,35 @@ The following is an example of calling the delete method on a log with id (23)
 $response=LogServiceClient::delete(23);
 var_dump($response);
 }}}
+
+===The put method (PUT)===
+The put method is the heart of the api that allow you to save your logs or simply to log information on persiste. platform.
+The Sdk is purelly Object orriented but provide an easy interface to reduce the amount of code you write.
+Logs are classified into the following four categories:
+ * error : for logging fatal error or logs estimated at this level;
+ * warn : for logging warnings or logs estimated at this level; 
+ * info : for logging information, alerts or logs estimated at this level; 
+ * success : for success alerts or logs estimated at this level; 
+
+The sdk provide an interface for each of this type of logs. 
+for each of these interface, you are required to provide the title and a description of the log.
+You can also specify the developer emitting the log this allow you to spot from whose code the logs are coming from. 
+You can also specify the list or custom fields with their  values.
+You can even specify a stack trace information.  
+
+The following is an example of sending a log. 
+{{{
+<?php
+
+//warning log with tile and description
+//$response=LogServiceClient::warn("my log", "sample log");
+
+//information log with tile and description
+$response=LogServiceClient::info("tell log", "sample log using tell");
+
+//complete fatal error log with custom fields and stack trace
+$fields=array('Line'=>'32','Function'=>'load','Memory'=>50);
+$response=LogServiceClient::warn("Evan Log", "sample log",'evanxg852000@yahoo.fr',$fields, 'this is the stack trace');
+
+var_dump($response);
+}}}
