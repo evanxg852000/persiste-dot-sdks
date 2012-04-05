@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -74,21 +75,37 @@ public class HttpClientWrapper {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected JSONObject unpackData(String response){
+	protected LogserviceResponse unpackData(String response){
+		LogserviceResponse formated_response=null;
 		if(response.equals("404")){
-			JSONObject formated_response=new JSONObject();
-			formated_response.put("status", "failure");
-			formated_response.put("message", "Missing required parameter");
+			formated_response=new LogserviceResponse("failure","Missing required parameter");
 			return formated_response;
 		}
 		
 		if(response.equals("401")){
-			JSONObject formated_response=new JSONObject();
-			formated_response.put("status", "failure");
-			formated_response.put("message", "Authentication error, check your credentials");
+			formated_response=new LogserviceResponse("failure","Authentication error, check your credentials");
 			return formated_response;
 		}
-		return (JSONObject)JSONValue.parse(response);
+		
+		try{
+			JSONObject json=(JSONObject)JSONValue.parse(response);
+			formated_response=new LogserviceResponse((String)json.get("status"),(String)json.get("message"));
+			ArrayList<JSONObject> logs=(ArrayList<JSONObject>)json.get("data");
+			if(logs!=null){
+				ArrayList<Object> data=new ArrayList<Object>();
+				Log log=null;
+				for(JSONObject obj:logs){
+					log=new Log(Integer.parseInt((String)obj.get("level")),(String)obj.get("title"),(String) obj.get("description"), (String )obj.get("emiter_email"), (Map<String, String>) obj.get("custom_fields") , (String) obj.get("stack_trace"));
+					data.add(log);
+				}
+				formated_response.setData(data);
+			}	
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return formated_response;
 	}
 	
 	public static void setParams(INotifiable  notification_receiver,boolean is_async){
@@ -121,7 +138,7 @@ public class HttpClientWrapper {
 		    }
 
 			if(HttpClientWrapper.notification_receiver!=null){
-				JSONObject formated_response=HttpClientWrapper.this.unpackData(HttpClientWrapper.this.response);
+				LogserviceResponse formated_response=HttpClientWrapper.this.unpackData(HttpClientWrapper.this.response);
 				HttpClientWrapper.notification_receiver.LoggingClientCompleted(formated_response,HttpClientWrapper.this.has_error);
 			}
 			
@@ -158,7 +175,7 @@ public class HttpClientWrapper {
 			}
 
 			if(HttpClientWrapper.notification_receiver!=null){
-				JSONObject formated_response=HttpClientWrapper.this.unpackData(HttpClientWrapper.this.response);
+				LogserviceResponse formated_response=HttpClientWrapper.this.unpackData(HttpClientWrapper.this.response);
 				HttpClientWrapper.notification_receiver.LoggingClientCompleted(formated_response,HttpClientWrapper.this.has_error);
 			}
 		}

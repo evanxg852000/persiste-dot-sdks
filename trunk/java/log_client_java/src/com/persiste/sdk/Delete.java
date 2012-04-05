@@ -22,7 +22,7 @@ public class Delete extends CallableMethod{
 	
 	@Override
 	public void call() {
-		String url=Sdk.LOG_SERVICE_ENDPOINT+"put/"+Sdk.LOG_SERVICE_APP_UNICID+"/"+Sdk.LOG_SERVICE_API_KEY+"/"+this.id;
+		String url=Sdk.LOG_SERVICE_ENDPOINT+"delete/"+Sdk.LOG_SERVICE_APP_UNICID+"/"+Sdk.LOG_SERVICE_API_KEY+"/"+this.id;
 		HttpClientWrapper http=new HttpClientWrapper(url);
 		
 		http.get();
