@@ -1,0 +1,8 @@
+C:\Users\Evansofts\Desktop\log_client_cs\PersisteDotSdk\bin\Release\PersisteDotSdk.dll
+C:\Users\Evansofts\Desktop\log_client_cs\PersisteDotSdk\bin\Release\PersisteDotSdk.pdb
+C:\Users\Evansofts\Desktop\log_client_cs\PersisteDotSdk\bin\Release\Newtonsoft.Json.dll
+C:\Users\Evansofts\Desktop\log_client_cs\PersisteDotSdk\bin\Release\Newtonsoft.Json.pdb
+C:\Users\Evansofts\Desktop\log_client_cs\PersisteDotSdk\bin\Release\Newtonsoft.Json.xml
+C:\Users\Evansofts\Desktop\log_client_cs\PersisteDotSdk\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evansofts\Desktop\log_client_cs\PersisteDotSdk\obj\Release\PersisteDotSdk.dll
+C:\Users\Evansofts\Desktop\log_client_cs\PersisteDotSdk\obj\Release\PersisteDotSdk.pdb
