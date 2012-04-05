@@ -2,7 +2,7 @@
 
 = Getting the SDK =
 
-First of all download the PHP sdk from [ here] , unpack the zip file. 
+First of all download the PHP sdk from [http://persiste-dot-sdks.googlecode.com/files/php_v0.1.zip here] , unpack the zip file. 
 
 = Integration =
 
@@ -111,7 +111,7 @@ $response=LogServiceClient::info("tell log", "sample log using tell");
 
 //complete fatal error log with custom fields and stack trace
 $fields=array('Line'=>'32','Function'=>'load','Memory'=>50);
-$response=LogServiceClient::warn("Evan Log", "sample log",'janedoe@yahoo.fr',$fields, 'this is the stack trace');
+$response=LogServiceClient::error("Evan Log", "sample log",'janedoe@yahoo.fr',$fields, 'this is the stack trace');
 
 var_dump($response);
 }}}
