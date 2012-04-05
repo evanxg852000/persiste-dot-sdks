@@ -16,6 +16,7 @@ Now Open the file you just included `SDk.php` and configure your application cre
 
  * Change this constant value to reflect the application unic id
 [https://lh3.googleusercontent.com/-HlQo1lZMxQk/T33brSMkyCI/AAAAAAAAAnc/tIr0ZgyP6Pg/w703-h527-k/config.png]
+
 Log in your persiste. account , switch to the application and go to account. APP IDENTITY field value is the app unic id
 {{{  
 define("LOG_SERVICE_APP_UNICID", "4F59CB0433Z1C221869268") ;
