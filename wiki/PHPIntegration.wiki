@@ -14,13 +14,13 @@ Once the sdk package has been unpacked , drop the sdk folder into your project a
 
 Now Open the file you just included `SDk.php` and configure your application credentials.
 
- # Change this constant value to reflect the application unic id
+ * Change this constant value to reflect the application unic id
 log in your persiste. account , switch to the application and go to account. APP IDENTITY field value is the app unic id
 {{{  
 define("LOG_SERVICE_APP_UNICID", "4F59CB0433Z1C221869268") ;
 }}}
 
- # Using the previous method find you api key and api secret to change their respective constant values. 
+ * Using the previous method find you api key and api secret to change their respective constant values. 
 {{{
 //api key
 define("LOG_SERVICE_API_KEY", "4F59695A496E4853357468") ;
@@ -36,7 +36,7 @@ aytv+5CvPfhGxZ4+DQIDAQAB
 }}}
 
 
-Persiste PHP SDK uses curl to communicate with the server by default but when cur is not available, it uses the url of log file specified in the application settings to get your logs.
+ * Persiste PHP SDK uses curl to communicate with the server by default but when cur is not available, it uses the url of log file specified in the application settings to get your logs.
 If curl is enable on your server you can skip this.
 If not, the file you specify here must be writable by your app and must be accessible through the web.
 NOTE don't worry the file is always cleaned after each request so no one will view your logs. 
