@@ -16,7 +16,7 @@ That's all for the integration.
 
 == Persiste. API == 
 
-The Persiste. API has three main methods all that return a response of type `LogServiceResponse`. This class has three properties:
+The Persiste. API has three main methods which all return a response of type `LogServiceResponse`. This class has three properties:
  * Status: wich can take one of the following value:
    # error : the call was not sent to the server for reason usually specified in the message property  
    # failure : The call was well went to the server but was performed for reseon that is usually specified in the message property.
@@ -33,5 +33,16 @@ The following is an example of calling the get method
 {{{
 <?php
 $response=LogServiceClient::get(1);
+var_dump($response);
+}}}
 
+===The delete method (DELETE)===
+The delete method allow you to delete a log by specifying its id.  
+Note that the log you want to delete must belong to the calling application otherwise you will get a failure status.
+
+The following is an example of calling the delete method on a log with id (23) 
+{{{
+<?php
+$response=LogServiceClient::delete(23);
+var_dump($response);
 }}}
