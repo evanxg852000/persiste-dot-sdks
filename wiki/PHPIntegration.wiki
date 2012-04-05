@@ -13,16 +13,15 @@ Once the sdk package has been unpacked , drop the sdk folder into your project t
 }}}
 
 Now Open the file you just included `SDk.php` and configure your application credentials.
-
- * Change this constant value to reflect the application unic id
+Log in your persiste. account , switch to the application and go to account.  is the app unic id
 [https://lh3.googleusercontent.com/-HlQo1lZMxQk/T33brSMkyCI/AAAAAAAAAnc/tIr0ZgyP6Pg/w703-h527-k/config.png]
 
-Log in your persiste. account , switch to the application and go to account. APP IDENTITY field value is the app unic id
+ * Change the constant LOG_SERVICE_APP_UNICID value to reflect the application APP IDENTITY field value.
 {{{  
 define("LOG_SERVICE_APP_UNICID", "4F59CB0433Z1C221869268") ;
 }}}
 
- * Using the previous method find you api key and api secret to change their respective constant values. 
+ * Using the previous method find your api key and api secret to change their respective constant value. 
 {{{
 //api key
 define("LOG_SERVICE_API_KEY", "4F59695A496E4853357468") ;
