@@ -1,13 +1,37 @@
-#summary One-sentence summary of this page.
+#summary This small tutorial will guide you in integrating Persite. platform in your Php application.
 
-= Introduction =
+= Getting the SDK =
 
-Add your content here.
+First of all download the PHP sdk from [ here] , unpack the zip file. 
 
+= Integration =
 
-= Details =
+Once the sdk package has been unpacked , drop the sdk folder into your project and include the include the sdk into your php project using this snippet.
+{{{
+<?php
+ include("PATH_TO_SDK_FOLDER/Sdk.php");
+}}}
+ 
+That's all for the integration.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Persiste. API == 
+
+The Persiste. API has three main methods all that return a response of type `LogServiceResponse`. This class has three properties:
+ * Status: wich can take one of the following value:
+   # error : the call was not sent to the server for reason usually specified in the message property  
+   # failure : The call was well went to the server but was performed for reseon that is usually specified in the message property.
+   # success : The call was performed correctly.
+ * Message: The description or reason of the status 
+ * Data : An option data sent from the server usualy the logs you retrieved using get
+===The get method (GET)===
+The get method allow you to retrieve logs previously saved.  
+This method takes a parameter which is the page of logs you intend to retrieve. it defaults to 1 when not specified.
+
+For performance reason on your application, persiste. send only 12 logs per page. 
+
+The following is an example of calling the get method 
+{{{
+<?php
+$response=LogServiceClient::get(1);
+
+}}}
