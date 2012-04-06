@@ -1,19 +1,20 @@
 #summary This small tutorial will guide you in integrating Persite. platform in your Php application.
+#labels Featured
 
 = Getting the SDK =
 
-First of all download the PHP sdk from [http://persiste-dot-sdks.googlecode.com/files/php_v0.1.zip here] , unpack the zip file. 
+First of all download the php sdk from [http://persiste-dot-sdks.googlecode.com/files/php_v0.1.zip here] , unpack the zip file. 
 
 = Integration =
 
-Once the sdk package has been unpacked , drop the sdk folder into your project the include the sdk into your php project using this snippet.
+Once the sdk package has been unpacked , drop the sdk folder into your project and include the sdk into your php project using this snippet.
 {{{
 <?php
  include("PATH_TO_SDK_FOLDER/Sdk.php");
 }}}
 
-Now Open the file you just included `SDk.php` and configure your application credentials.
-Log in your persiste. account , switch to the application and go to account.  is the app unic id
+Now open the file you just included `Sdk.php` and configure your application credentials.
+Log in your persiste. account , switch to the application and go to account. 
 [https://lh3.googleusercontent.com/-HlQo1lZMxQk/T33brSMkyCI/AAAAAAAAAnc/tIr0ZgyP6Pg/w703-h527-k/config.png]
 
  * Change the constant LOG_SERVICE_APP_UNICID value to reflect the application APP IDENTITY field value.
@@ -37,10 +38,10 @@ aytv+5CvPfhGxZ4+DQIDAQAB
 }}}
 
 
- * Persiste PHP SDK uses curl to communicate with the server by default but when cur is not available, it uses the url of log file specified in the application settings to get your logs.
-If curl is enable on your server you can skip this.
+ * Persiste. php sdk uses curl to communicate with the server by default; but when cur is not available, it uses the url of log file specified in the application settings to get your logs.
+If curl is enable on your server you can skip this step.
 If not, the file you specify here must be writable by your app and must be accessible through the web.
-NOTE don't worry the file is always cleaned after each request so no one will view your logs. 
+*NOTE:* don't worry the file is always cleaned after each request so no one will view your logs. 
 
 {{{
 //local log file when curl is not avaible
@@ -55,15 +56,15 @@ That's all for the integration.
 The Persiste. API has three main methods which all return a response of type `LogServiceResponse`. This class has three properties:
  * Status: wich can take one of the following value:
    # error : the call was not sent to the server for reason usually specified in the message property  
-   # failure : The call was well went to the server but was performed for reseon that is usually specified in the message property.
+   # failure : The call was well sent to the server but was not performed for reseon that is usually specified in the message property.
    # success : The call was performed correctly.
  * Message: The description or reason of the status 
- * Data : An option data sent from the server usualy the logs you retrieved using get
+ * Data : An optional data sent from the server: usualy the logs you retrieved using get method.
 ===The get method (GET)===
 The get method allow you to retrieve logs previously saved.  
 This method takes a parameter which is the page of logs you intend to retrieve. it defaults to 1 when not specified.
 
-For performance reason on your application, persiste. send only 12 logs per page. 
+*NOTE:* for performance reason on your application, persiste. only sends 12 logs per page. 
 
 The following is an example of calling the get method 
 {{{
@@ -85,18 +86,18 @@ var_dump($response);
 
 ===The put method (PUT)===
 The put method is the heart of the api that allow you to save your logs or simply to log information on persiste. platform.
-The Sdk is purelly Object orriented but provide an easy interface to reduce the amount of code you write.
+The sdk is purelly object oriented but provides an easy interface to reduce the amount of code you write.
 Logs are classified into the following four categories:
- * error : for logging fatal error or logs estimated at this level;
+ * error : for logging fatal errors or logs estimated at this level;
  * warn : for logging warnings or logs estimated at this level; 
  * info : for logging information, alerts or logs estimated at this level; 
  * success : for success alerts or logs estimated at this level; 
 
 The sdk provide an interface for each of this type of logs. 
-for each of these interface, you are required to provide the title and a description of the log.
-You can also specify the developer emitting the log this allow you to spot from whose code the logs are coming from. 
-You can also specify the list or custom fields with their  values.
-You can even specify a stack trace information.  
+For each of these interface, you are required to provide the title and a description of the log.
+ * You also can specify the developer emitting the log which allow you to spot from whose code the logs are coming from. 
+ * You also can specify a list of custom fields with their  value.
+ * You can even specify a stack trace information.  
 
 The following is an example of sending a log. 
 {{{
