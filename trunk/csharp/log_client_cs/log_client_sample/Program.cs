@@ -23,26 +23,27 @@ namespace log_client_sample {
     class Program {
         static void Main(string[] args) {
             //configure
-           // Sdk.LOG_SERVICE_API_KEY = "fgdfg";
+            Sdk.LOG_SERVICE_APP_UNICID = "4F59CB0433Z1C221869268";
+            Sdk.LOG_SERVICE_API_KEY = "4F59695A496E4853357468";
 
-            //initialise service callback passing true will make all service call to be performed asynchronously 
+            //initialise service callback (passing true will make all service call to be performed asynchronously) 
             LogServiceClient.Initialise(new LogNotifactionReceiver(), true);
 
-            /*save log with custom fields
+            //save log with custom fields
             Dictionary<String, String> custom_fields=new Dictionary<string,string>();
             custom_fields.Add("Calibre", "58");
             custom_fields.Add("FPS", "110");
             LogServiceClient.warn("C#", "a log from c#", "janedoe@yahoo.fr",custom_fields);
-            */
+            
 
             //save log without fields
-            //LogServiceClient.warn("C#", "a log from c#", "janedoe@yahoo.fr");
+            LogServiceClient.warn("C#", "a log from c#", "janedoe@yahoo.fr");
 
             //get logs by page (first page)
-            // LogServiceClient.get(1);
+             LogServiceClient.get(1);
             
             //delete log
-            //LogServiceClient.delete(38);
+            LogServiceClient.delete(38);
 
         }
 

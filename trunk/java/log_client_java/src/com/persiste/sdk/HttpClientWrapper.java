@@ -132,6 +132,9 @@ public class HttpClientWrapper {
 				while ((s = buffer.readLine()) != null) {
 					HttpClientWrapper.this.response += s;
 				}
+				if(HttpClientWrapper.this.response.equals("")){
+					throw new Exception();
+				}
 		    } catch (Exception e) { 
 		    	HttpClientWrapper.this.response="{\"status\":\"failure\",\"message\":\"Http client error check connection\"}";
 		    	HttpClientWrapper.this.has_error=true;
