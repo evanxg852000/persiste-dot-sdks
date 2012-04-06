@@ -14,7 +14,8 @@ Once the sdk package has been unpacked , drop the sdk folder into your project a
 }}}
 
 Now open the file you just included `Sdk.php` and configure your application credentials.
-Log in your persiste. account , switch to the application and go to account. 
+Log in your persiste. account , switch to the application and go to account.
+ 
 [https://lh3.googleusercontent.com/-HlQo1lZMxQk/T33brSMkyCI/AAAAAAAAAnc/tIr0ZgyP6Pg/w703-h527-k/config.png]
 
  * Change the constant LOG_SERVICE_APP_UNICID value to reflect the application APP IDENTITY field value.
