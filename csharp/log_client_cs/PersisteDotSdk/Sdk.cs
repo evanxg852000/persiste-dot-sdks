@@ -23,10 +23,10 @@ namespace PersisteDotSdk {
 	    public static String LOG_SERVICE_ENDPOINT="http://flix.dev/services/csharp/logs/" ;
 
 	    /* The application unic id */
-        public static String LOG_SERVICE_APP_UNICID = "4F59CB0433Z1C221869268";
+        public static String LOG_SERVICE_APP_UNICID = "";
 
 	    /* Your api key */
-        public static String LOG_SERVICE_API_KEY = "4F59695A496E4853357468";
+        public static String LOG_SERVICE_API_KEY = "";
 
 	    /*Your api secret*/
         public static String LOG_SERVICE_API_SECRET = "not in use in this sdk";
