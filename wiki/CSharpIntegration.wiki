@@ -3,7 +3,7 @@
 
 = Getting the SDK =
 
-First of all download the php sdk from [http://persiste-dot-sdks.googlecode.com/files/csharp_v0.1.zip here] , unpack the zip file. 
+First of all download the C sharp sdk from [http://persiste-dot-sdks.googlecode.com/files/csharp_v0.1.zip here] , unpack the zip file. 
 
 = Integration =
 
@@ -49,7 +49,11 @@ class LogNotifactionReceiver : INotifiable {
 		//check service call status here an maybe report errors
 		if (response != null) { 
 			Console.WriteLine(response.Status);
-			Console.WriteLine(response.Message);   
+			Console.WriteLine(response.Message);  
+
+			//list of logs
+			List<Log> logs=response.Data;
+
 		}
 
 	}
@@ -80,12 +84,7 @@ This method takes a parameter which is the page of logs you intend to retrieve. 
 
 The following is an example of calling the get method 
 {{{
-LogServiceResponse response=LogServiceClient.get(1);
-Console.WriteLine(response.Message);
-
-//list of logs
-List<Log> logs=response.Data;
-
+LogServiceClient.get(1);
 }}}
 
 ===The delete method (DELETE)===
@@ -94,8 +93,7 @@ Note that the log you want to delete must belong to the calling application othe
 
 The following is an example of calling the delete method on a log with id (23) 
 {{{
-LogServiceResponse response=LogServiceClient.delete(23);
-Console.WriteLine(response.Message);
+LogServiceClient.delete(23);
 }}}
 
 ===The put method (PUT)===
