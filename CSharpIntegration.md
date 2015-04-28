@@ -1,0 +1,122 @@
+# Getting the SDK #
+
+First of all download the C sharp sdk from [here](http://persiste-dot-sdks.googlecode.com/files/csharp_v0.1.zip) , unpack the zip file.
+
+# Integration #
+
+Once the sdk package has been unpacked , add a reference to all the dlls located in ../libs\_4.0/.net 4.0/
+
+
+Before any api call you need to configure and initialise the client using your application credentials.
+The Sdk class has four public properties that helps your configure the client.
+
+Log in your persiste. account , switch to the application and go to account.
+
+![https://lh3.googleusercontent.com/-HlQo1lZMxQk/T33brSMkyCI/AAAAAAAAAnc/tIr0ZgyP6Pg/w703-h527-k/config.png](https://lh3.googleusercontent.com/-HlQo1lZMxQk/T33brSMkyCI/AAAAAAAAAnc/tIr0ZgyP6Pg/w703-h527-k/config.png)
+
+  * Set the LOG\_SERVICE\_APP\_UNICID value to reflect the application APP IDENTITY field value.
+```
+//app unic id
+Sdk.LOG_SERVICE_APP_UNICID="4F59CB0433Z1C221869268" ;
+```
+
+  * Using the previous method find your api key and api secret to change their respective constant value.
+```
+//api key
+Sdk.LOG_SERVICE_API_KEY="4F59695A496E4853357468") ;
+
+//api secret
+//this constant is not used currently and can be left null
+Sdk.LOG_SERVICE_API_SECRET="";
+
+```
+
+The next step of the integration is the initialisation. This step allows you to specify a callback for all subsequent api requests and
+chose whether or not your want requests to be asynchronous (e.i to run in a separate thread)
+The initialisation is done by calling the static `Initialise` method of `LogServiceClient` which takes an implementaion of `INotifiable` (the callback)
+and a bolean setting the asynchronous behavior.
+
+**NOTE:** The recommecded method is to use asynchronous behavior whenever possible.
+
+The following is an example of how you could initialise the sdk.
+```
+//first implement INotifiable
+class LogNotifactionReceiver : INotifiable {
+	public void LoggingClientCompleted(LogServiceResponse response, bool http_error_flag) {
+		//check service call status here an maybe report errors
+		if (response != null) { 
+			Console.WriteLine(response.Status);
+			Console.WriteLine(response.Message);  
+
+			//list of logs
+			List<Log> logs=response.Data;
+
+		}
+
+	}
+}
+
+ //initialise service callback (
+ //passing true will make all service call to be performed asynchronously
+ LogServiceClient.Initialise(new LogNotifactionReceiver(), true);
+
+```
+
+That's all for the integration.
+
+## Persiste. API ##
+
+The Persiste. API has three main methods which all return a response of type `LogServiceResponse`. This class has three properties:
+  * Status: wich can take one of the following value:
+    1. error : the call was not sent to the server for reason usually specified in the message property
+    1. failure : The call was well sent to the server but was not performed for reseon that is usually specified in the message property.
+    1. success : The call was performed correctly.
+  * Message: The description or reason of the status
+  * Data : An optional data sent from the server: usualy the logs you retrieved using get method.
+### The get method (GET) ###
+The get method allow you to retrieve logs previously saved.
+This method takes a parameter which is the page of logs you intend to retrieve. it defaults to 1 when not specified.
+
+**NOTE:** for performance reason on your application, persiste. only sends 12 logs per page.
+
+The following is an example of calling the get method
+```
+LogServiceClient.get(1);
+```
+
+### The delete method (DELETE) ###
+The delete method allow you to delete a log by specifying its id.
+Note that the log you want to delete must belong to the calling application otherwise you will get a failure status.
+
+The following is an example of calling the delete method on a log with id (23)
+```
+LogServiceClient.delete(23);
+```
+
+### The put method (PUT) ###
+The put method is the heart of the api that allow you to save your logs or simply to log information on persiste. platform.
+The sdk is purelly object oriented but provides an easy interface to reduce the amount of code you write.
+Logs are classified into the following four categories:
+  * error : for logging fatal errors or logs estimated at this level;
+  * warn : for logging warnings or logs estimated at this level;
+  * info : for logging information, alerts or logs estimated at this level;
+  * success : for success alerts or logs estimated at this level;
+
+The sdk provide an interface for each of this type of logs.
+For each of these interface, you are required to provide the title and a description of the log.
+  * You also can specify the developer emitting the log which allow you to spot from whose code the logs are coming from.
+  * You also can specify a list of custom fields with their  value.
+  * You can even specify a stack trace information.
+
+The following is an example of sending a log.
+```
+//save log without fields
+LogServiceClient.warn("C#", "a log from c#", "janedoe@yahoo.fr");
+		
+//complete fatal error log with custom fields and stack trace
+Dictionary<String, String> custom_fields=new Dictionary<string,string>();
+custom_fields.Add("Calibre", "58");
+custom_fields.Add("FPS", "110");
+LogServiceClient.error("C#", "a log from c#", "janedoe@yahoo.fr",custom_fields);
+			
+```
